@@ -1,6 +1,6 @@
 provider "aws" {
   region = "us-east-1"
-  profile= "default"
+  profile = "default"
 }
 
 // https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
@@ -31,4 +31,19 @@ resource "aws_instance" "instance-example" {
     Start = "MON-FRI-0100"
     Backup = "MON-FRI-0800"
   }
+}
+
+#Create an Elastic IP
+resource "aws_eip" "eip-example" {
+  domain = "vpc"
+    tags = {
+    Name = "eip-example"
+    Environment = "Dev"
+  }
+}
+
+#Associate EIP with EC2 Instance
+resource "aws_eip_association" "eip-example-association" {
+  instance_id   = aws_instance.instance-example.id
+  allocation_id = aws_eip.eip-example.id
 }
