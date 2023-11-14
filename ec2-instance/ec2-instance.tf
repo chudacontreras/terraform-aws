@@ -7,6 +7,7 @@ provider "aws" {
 
 // ami-01eccbf80522b562b Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type
 
+#Create EC2 instance
 resource "aws_instance" "instance-example" {
   ami                    = "ami-example"
   instance_type          = "t3.micro"
