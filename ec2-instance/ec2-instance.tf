@@ -22,7 +22,6 @@ resource "aws_instance" "instance-example" {
           sudo systemctl enable amazon-ssm-agent
           sudo systemctl start amazon-ssm-agent
         EOF
-
   tags = {
     Name = "instance-example"
     Environment = "Dev"
@@ -37,11 +36,8 @@ resource "aws_instance" "instance-example" {
 #Create an Elastic IP
 resource "aws_eip" "eip-example" {
   domain = "vpc"
-    tags = {
-    Name = "eip-example"
-    Environment = "Dev"
-  }
 }
+
 
 #Associate EIP with EC2 Instance
 resource "aws_eip_association" "eip-example-association" {
